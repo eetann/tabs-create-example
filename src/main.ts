@@ -5,13 +5,17 @@ const app = document.querySelector<HTMLDivElement>("#app")!;
 
 app.innerHTML = `
   <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-  <button>Count: 0</button>
+  <button id="create">chrome.tabs.create</button>
+  <button id="reload">chrome.tabs.reload</button>
+  <button id="update">chrome.tabs.update</button>
 `;
 
-let count = 0;
-const button = document.querySelector("#app button")!;
-button.addEventListener("click", () => {
-  count++;
-  button.textContent = `Count: ${count}`;
+document.getElementById("create")?.addEventListener("click", () => {
+  chrome.tabs.create({ url: "https://zenn.dev/eetann" });
+});
+document.getElementById("reload")?.addEventListener("click", () => {
+  chrome.tabs.reload();
+});
+document.getElementById("update")?.addEventListener("click", () => {
+  chrome.tabs.update({ url: "https://github.com/eetann" });
 });
